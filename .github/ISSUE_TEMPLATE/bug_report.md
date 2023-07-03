@@ -1,8 +1,10 @@
 ---
 name: Bug report
 about: Create a report in case we may be able to help
+labels: bug - unconfirmed
 
 ---
+**PLEASE NOTE: We are trying to make this project live again. While you can file an issue, we will do our best but you should not expect any action, even if we label the issue. However, we are welcoming new contributors **
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -35,6 +37,10 @@ A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
+
+**Log**
+If applicable, copy any error logs in your browser console. This can be very
+helpful in identifying the problem.
 
 **Additional context**
 Add any other context about the problem here.

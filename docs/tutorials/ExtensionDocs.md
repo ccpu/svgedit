@@ -1,7 +1,7 @@
 # Introduction
 
-SVG-Edit has support for extensions (as of v2.5). This is a guide for
-creating SVG-Edit extensions.
+SVG-Edit has support for extensions. This is a guide for creating
+SVG-Edit extensions.
 
 ## Means to have extensions loaded
 
@@ -9,11 +9,13 @@ SVG-Edit extensions are standalone JavaScript files that can be either
 included in the HTML file, loaded using `setConfig`, or indicated through
 the URL (see [ConfigOptions]{@tutorial ConfigOptions} for usage).
 
-Note that, as of v3.0, if you create a `svgedit-config-iife.js` file in
-the project root directory (`config.js` in the `editor` directory for
-v2.8), this will be used to execute commands before extensions are loaded,
+`svgedit-config-iife.js` in the `src` directory (if
+through Git clone, by running `npm run build-by-config`) is the file used
+by `svg-editor.html` to execute commands before extensions are loaded,
 e.g., if you wish to make configuration changes which affect extension
-loading behavior. Normally, however, it should be preferable for modularity
+loading behavior.
+
+Normally, however, it should be preferable for modularity
 to use the extension mechanism, as this can allow you or users to customize
 which extensions are loaded (whereas `svgedit-config-iife.js` will always
 run if present).
@@ -25,10 +27,10 @@ This is the general format for an extension:
 ```js
 export default {
   name: 'extensionname',
-  init (methods) {
-    return extensionData;
+  init (_methods) {
+    return extensionData
   }
-};
+}
 ```
 
 Extensions must export an object. (For the API docs of this object, see
@@ -77,16 +79,16 @@ export default {
   init () {
     return {
       svgicons: 'extensions/helloworld-icon.xml',
-      buttons: [{ /* ... */ }],
+      buttons: [ { /* ... */ } ],
       mouseDown () {
         // ...
       },
-      mouseUp (opts) {
+      mouseUp (_opts) {
         // ...
       }
-    };
+    }
   }
-};
+}
 ```
 
 Note how the returned properties may include information on the buttons,
@@ -137,28 +139,28 @@ property should follow the format
 naming conflicts in the non-modular version of SVGEdit.
 
 ```js
-import {importSetGlobalDefault} from '../external/dynamic-import-polyfill/importModule.js';
+import { importSetGlobalDefault } from '../external/dynamic-import-polyfill/importModule.js';
 
 // ...
 
 (async () => {
 
-const url = `${svgEditor.curConfig.extPath}ext-locale/<extNameWithoutExtPrefix>/<lang>.js`;
-const localeStrings = await importSetGlobalDefault(url, {
-  global: 'svgEditorExtensionLocale_imagelib_' + lang
-});
+  const url = `${svgEditor.curConfig.extPath}ext-locale/<extNameWithoutExtPrefix>/<lang>.js`
+  const localeStrings = await importSetGlobalDefault(url, {
+    global: 'svgEditorExtensionLocale_imagelib_' + lang
+  })
 
-// Use `localeStrings`
-console.log(localeStrings);
+  // Use `localeStrings`
+  console.info(localeStrings)
 
-})();
+})()
 ```
 
 In addition to your own extension's locale strings,
 [`langReady`]{@link module:svgcanvas.ExtensionInitResponse#langReady}
 also has access to the global internationalization strings through the
 `uiStrings` property on the object passed to it (see
-[event:ext-langReady]{@link module:svgcanvas.SvgCanvas#event:ext-langReady}).
+[event:ext_langReady]{@link module:svgcanvas.SvgCanvas#event:ext_langReady}).
 
 See also [LocaleDocs]{@tutorial LocaleDocs}, including for information on
 formatting of locale strings (the current lack of any standard beyond a

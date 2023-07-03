@@ -1,9 +1,258 @@
 # SVG-Edit CHANGES
 
-## ?
+## 7.3.1
+- npm packages ugrade 
+- refresh Arabic language
 
+## 7.3.0
+- bug fixes 
+- add Ukrainien and Swedish languages
+
+## 7.2.0
+- introduce the notion of workspace 
+- separate svgcanvas into a package
+
+**Warning: This version will break applications using svgcanvas directly. You need to change your import to "@svgedit/svgcanvas"** 
+## 7.1.4
+- Implement horizontal or vertical distribution alignment (mulder3062)
+- fix several bugs and update to latest dependencies
+- new tr translation (zktosu)
+## 7.1.3
+- fix issue #736. could not move layers
+## 7.1.2
+- add the current document title in the toolbar
+- allow user extensions to define optional parameters
+- more events for renamedElement, beforeClear, afterClear, sourceChanged
+- remove "message" event used for iframe integration not used anymore. can be readded through a new extension if necessary
+- default precision down to 2 digits (and applied in rotation)
+## 7.1.1
+- Fix an issue when moving a text with an existing transformation (issue #689)
+## 7.1.0
+- Large refactoring of svgcanvas (a lot of remaining work with the goal to separate in its own package).This explains the move to a minor version 
+- move to a new linter (standard).
+- Several issues fixed
+## 7.0.2
+- create an IIFE build.
+## 7.0.1
+- remove ext-overview in default extensions for performance reasons
+## 7.0.0
+- New UI
+- Rearchitecture the code (more modular)
+- Simplify and refresh the build process
+- Introduce Web Component to replace jQuery UI
+- Update dependencies
+## 6.0.0 (unreleased)
+
+- Project: Add `FUNDING.yml` to accept contributions
+- License: Reflect actual license of library in `package.json` based
+  not only on licenses of repository as a whole (i.e., "MIT") but
+  individual component files; see `filesByLicense` in `licenseInfo.json`
+  for a map of license to these files within the repo with their own
+  licenses. See the new license badges on the README for a summary of
+  the licenses including either bundled devDependencies or all
+  `devDependencies` (we have no direct npm `dependencies` currently).
+- License: Add note about unclear provenance of some images
+- License: Relicense ext-mathjax from Apache-2.0 to MIT per
+  <https://github.com/josegaert/ext-mathjax/issues/6>
+- License: Clarify in `@license` that `ext-server_moinsave.js` is
+  "(MIT OR GPL-2.0-or-later)" per subsequent text
+- License: Reorder license listing in `jquery.contextMenu.js` so
+  that more permissive is noticeable first
+- License: Replace CC-BY-SA-2.0 polygon image (thanks, @mowijo !)
+- BREAKING CHANGE: Remove `$.pref` in favor of new `svgEditor.pref`
+  (avoiding polluting jQuery). (Might be moved to own module in
+  future.)
+- BREAKING CHANGE: `putLocale` (a function called automatically by
+  `svg-editor.js`) no longer checks `pref`. Should not impact
+  average consumers.
+- BREAKING CHANGE: Move clipboard from `localStorage` to `sessionStorage`
+    (@NeilFraser)
+- Fix: main menu style and text #371
+- Fix (Accessibility): Avoid duplicate IDs
+- Fix (openclipart browser): Redirect on lacking browser support
+- Fix: Misspelling for `dropXMLInternalSubset` method (also fixes
+    use in imagelib when defaulting to image's title)
+- Fix: Redirect paths for imagelib redirect checks
+- Fix: Ensure `setupCurPrefs` is run (including when `source` or
+    `url` is set within the URL)
+- Fix: Pressing 'Ctrl+A' causes js error when canvas is empty (@cuixiping)
+- Fix: Path element cannot be exported to PDF; export path with
+    holes to PDF; export path element to PDF, support more path
+    commands; #269 (@cuixiping)
+- Fix: remove "null" attributes in svg source #76 (@cuixiping)
+- Fix: A bug of `convertPath` function when converting H and V to
+    relative (@cuixiping)
+- Fix: Layer `removeGroup` not returning element (@brettz9)
+- Fix: issue with undo because `this.elem` was overwritten with
+    `node.remove()`; #359 (@jhenon)
+- Fix: Double click not working to edit text within a group. #407 (@jhenon)
+- Fix: Showing SVG content when the context is changed. #408 (@jhenon)
+- Optimization: Remove unused `jquery-ui-1.8.custom.min.js` file
+- Optimization: Remove old build/tools closure/yuicompressor code
+- Optimization: Remove unmaintained chrome-app, firefox-extension,
+  opera-widget (an updated WebExtensions replacement (or such)
+  would be welcome.)
+- Localization: Add 'SVG-Edit Home Page' to locale files
+- Docs: Remove outdated info on jsdoc linting (now just part of eslint config)
+- Docs: Add testing badge
+- Docs: Update coverage badge per latest coveradge
+- Docs: Add license badges and `licenseInfo.json` (has a
+  `filesByLicense` map of files to licenses (not yet used programmatically)
+  and `bundledRootPackages` which is used by `license-badger` to know which
+  dev. packages are being bundled (added by `npm run copy`) for determining
+  summary of all licenses including bundled).
+- Docs: Reprioritize `docs` in commit lists (prioritize user-facing)
+- Docs: Update Pavol's email address (@prusnak)
+- Docs: Update license badges to reflect lack of (known) CC-BY-SA-2.0 usage
+- Docs: Update Contributing, Testing (renamed to Development),
+    Linting and ReleaseInstructions
+- Docs: Add feature and PR templates
+- Update: Cypress code coverage plugin
+- Refactoring: Switch from `$.param.querystring` to `URL`
+- Refactoring: Ensure file-global jsdoc tags are at beginning of file
+- Refactoring: Move `build-html` to `build` directory
+- Refactoring: Add favicon no-op to suppress favicon 404s until
+  loaded dynamically (might make configurable in future)
+- Refactoring: create a src folder and subfolders for svgcanvas, editor, common and externals.
+- Linting (ESLint): Simplify regexes
+- Linting (ESLint): Replace `innerHTML` with `textContent` from old demo
+- Linting (ESLint): Update as per latest ash-nazg
+- Linting (ESLint): Add rules to check for file-level tags
+- Linting (ESLint): Check hidden rc files
+- Linting (ESLint): Add linting plugins (mocha, chai-expect, chai-friendly,
+    cypress)
+- Linting (ESLint): Add `@fintechstudieos/eslint-plugin-chai-as-promised`,
+    `eslint-plugin-chai-expect-keywords`, and `eslint-plugin-mocha-cleanup`
+    plugins
+- Testing: Switch to Cypress with code coverage for UI testing;
+  use ESM version for faster debugging
+- Testing: Add map file for underscore
+- Testing: Separate tests into unit/ui; split UI tests by specific domain;
+  setup browser-bug folder and ui issues folder
+- Testing: Create test utilities for selecting English and visiting and
+  approving storage
+- Testing: Produce mochawesome report
+- Testing: Cypress with multiple reporters in case we need
+- Build: Update underscore and core-js-bundle copies
+- Build: Use "json" extension for babelrc (easier out-of-the-box syntax
+    recognition by IDEs, etc.)
+- npm: Add `underscore` to copy script
+- npm: Make `copy`, `compress-images`, `start-embedded`, `build-docs-remove`
+  scripts cross-platform; add `start-allow-origin` script
+- npm: Rename open script to open-tests, and add `open` script for opening
+  instance of svgedit
+- npm: Ensure starting server for open scripts
+- npm/Linting: Add `--cache` to speed up subsequent linting
+- npm: Fix scripts for Windows development (needed for
+  building docs and instrumenting)
+- npm: Update scripts to reflect removal of `all_tests.html`;
+  remove `browser-test` script
+- npm: Add `add-release` script
+- npm: Add reporting scripts (tests and coverage)
+- npm: Add `license-badges`, `build-docs`, and `copy` scripts to `prepublishOnly` script
+- npm: Rename `test-prep` to `prep` and other misc. script naming changes
+- npm: Update `package-lock.json`
+- npm: Update from deprecated `rollup-plugin-babel` to `@rollup/plugin-babel`
+    (and make `babelHelpers` explicit)
+- npm: Update devDeps, peerDeps
+
+## 5.1.0
+
+- Deprecated: Should now use `avoidClientSideDownload` in place of
+    `avoidClientSide` (config for `ext-server_opensave.js`).
+- Fix: IE 11 issue; fixes #363
+- Fix: Avoid race condition in `jQuery.svgIcons.js` (evident
+    when attempting to load from `file:` URL in Chrome)
+- Fix: Input width (@seahindeniz)
+- Fix: Use change event to be sure that file is loaded before
+   the function (@Moliman)
+- Enhancement: Added `avoidClientSideOpen` config for
+    `ext-server_opensave.js`
+- Optimization: Re-rerun image optimization per update
+- Linting (ESLint): Adjust per now applied rules
+- Linting (ESLint): Add HTML files to linting
+- Linting (ESLint): Avoid shadowing
+- Linting: Assorted changes; ensure license versions are valid semver
+- Refactoring: Use `static` keyword for classes
+- Refactoring: Prefer `for...of`, `event.key` (newly enforced linting)
+- Refactoring: Better var. names
+- Testing: Accessibility test API update
+- Docs: Clarify need for Node.js/npm being installed
+- Build: Remove `types-docs` script as being handled in ESLint
+- Maintenance: Add `.editorconfig`
+- npm: Add script to fix eslint errors
+- npm: Rename `build-config` to `build-by-config`
+- npm: Update devDeps (including switching from deprecated opn-cli
+    package to open-cli); update core-js-bundle copy; add new
+    axe testing peer dep. axe-core in devDeps
+
+## 5.0.0
+
+- Breaking change: Switch from deprecated `@babel/polyfill` to
+    `core-js-bundle` and `regenerator-runtime` replacements
+- Build: Require Node 8.5
+- Fix: Ensure PHP files are present in `dist/extensions` alongside
+    JavaScript extension files using them
+- Fix: Bug in obtaining `extPath` in `ext-server_opensave.js`
+- Fix: Fully redirect extension entrances for lacking browser support
+- Enhancement: Add config `avoidClientSide` to avoid using
+    client-side support by default (and always require server)
+- Enhancement: Return a Promise for Editor's `setCustomHandlers`,
+    `loadFromString`, `loadFromDataURI` so known when ready and set
+- Refactoring: Destructuring, templates, label Unicode code point
+- Linting (JSDoc): Update per newly enforced `require-returns`; avoid
+  Closure syntax; reenable `jsdoc/valid-jsdoc` as fixed; notes
+  re: valid-jsdoc replacement; use same namepath
+- Linting: Update per ash-nazg/plugin-node update
+- Docs: Simplify comments in HTML files re: script purposes
+- Docs: Update release instructions
+- Docs (Refactoring): Formally specify `Promise` resolve type;
+    add `typedef` for dialog result object; add an
+    `ArbitraryCallbackResult` type; prefer `void`
+- npm: Rename (`build-doc` to `build-docs`, `types-doc` to
+    `types-docs`); add `open-docs` script
+- npm: Update devDeps
+- npm: Remove unused devDeps; update insecure devDeps
+
+## 4.3.0
+
+- Fix: Droplets for gradient pickers can now be double-clicked in
+    other browsers in addition to Firefox such as Chrome
+    to allow change of color (fixes #181) (@ajinkyas);
+    may be different between the browsers as a result of
+    <https://github.com/w3c/uievents/issues/141>
+- Fix: Delay icon setting until locales available (fixes #323)
+- Fix: Extension with no `placement` to be added to end;
+    for #326 (@sjernigan)
+- Fix: Error on dragging control point of arc; fixes #268 (@cuixiping)
+- Fix: With locales loading before extensions, ensure extensions'
+    `langReady` runs properly; fixes #334 (@cuixiping)
 - Optimization fix: Properly run code conditionally on browser check;
     fixes #312 (@ianli-sc)
+- Enhancement: Add CAD Placemark extension (@NeiroNx)
+- Enhancement (svgIcons): Fix JSDoc param def; add `alt` options
+- Accessibility: Begin work, add aria-label to some buttons and
+    form controls; add `role=main`; `<img alt>`; `<iframe title>`
+- i18n: Add `lang` attribute
+- Refactoring: lbs, simplify i18nized element retrieval call
+- Refactoring: Make dialog OK button retrievable locale-independently
+    via a `data-ok` attribute (using for testing)
+- Linting (ESLint): Update polyfills to new compat rules of
+    eslint-config-ash-nazg and adhere to new rules (prefer `for-of`
+    (or array methods) to `for`, catch preferred `includes` to `indexOf`);
+    avoid `no-zero-fractions` rule for now
+- Testing (UI Refactoring): Abstract out to helper file functions
+- Testing (UI Refactoring): Avoid testing being locale-dependent;
+    approve storage (and set locale to English) before each test
+- Testing: Avoid reporting meta-viewport (have own zooming
+    controls and difficult to fix)
+- Testing: Skip js errors in Testcafe; we're getting some uncaught
+    error despite not replicating manually; should file a Testcafe issue
+- Docs: Some JSDoc descriptions, JSDoc spacing, fix svgIcons
+    param def
+- Docs (Accessibility): Refer to known issues
+- npm: Update devDeps; update nested deps for security audit; remove
+    one unneeded)
 
 ## 4.2.0
 
